@@ -3,6 +3,7 @@ import { ID } from '@datorama/akita';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { EmployeeService } from 'src/app/services/service.employee.service';
 import { EmployeeQuery } from 'src/app/store/employee/employee.query';
+import { EmployeeStore } from 'src/app/store/employee/employee.store';
 import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 
 @Component({
@@ -17,6 +18,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private employeeQuery: EmployeeQuery,
+    private employeeStore: EmployeeStore,
     private modalService: NzModalService,
     private viewContainerRef: ViewContainerRef
   ) { }
@@ -27,6 +29,11 @@ export class EmployeeListComponent implements OnInit {
 
   private getEmployees() {
     this.employeeService.getEmployees().subscribe();
+  }
+
+  public deleteById(id: ID) {
+    this.employeeStore.setLoading(true);
+    this.employeeService.deleteEmployee(id).subscribe();
   }
 
   public opanModalDetailemployee(id: ID) {

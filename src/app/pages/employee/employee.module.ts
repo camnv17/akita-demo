@@ -9,6 +9,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NzFormModule,
     NzInputModule,
     NzButtonModule,
+    NzPopconfirmModule,
     EmployeeRoutingModule
   ]
 })

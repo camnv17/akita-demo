@@ -25,7 +25,11 @@
                     <i nz-icon
                        nzType="delete"
                        nzTheme="outline"
-                       style="color: red;"></i>
+                       style="color: red;"
+                       nz-popconfirm
+                       nzPopconfirmTitle="Are you sure delete this task?"
+                       nzPopconfirmPlacement="bottom"
+                       (nzOnConfirm)="deleteById(data.id)"></i>
                 </td>
             </tr>
         </tbody>

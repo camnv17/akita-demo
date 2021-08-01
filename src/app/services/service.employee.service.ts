@@ -45,6 +45,12 @@ export class EmployeeService {
   }
 
   public deleteEmployee(id: ID) {
-
+    return this.http.delete(`${this.url}/${id}`)
+      .pipe(
+        tap(_ => {
+          this.employeeStore.remove(id);
+          this.employeeStore.setLoading(false);
+        })
+      );
   }
 }
