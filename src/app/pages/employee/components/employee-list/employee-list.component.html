@@ -1,0 +1,33 @@
+<ng-container *ngIf="(entities$ | async) as entities">
+    <nz-table #basicTable
+              [nzData]="entities.employees"
+              [nzLoading]="entities.loading">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Updated Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{data.name}}</td>
+                <td>{{data.email}}</td>
+                <td>{{(data.updated_date*1000) | date: 'dd/mm/yyyy'}}</td>
+                <td>
+                    <i nz-icon
+                       nzType="edit"
+                       nzTheme="outline"
+                       style="color: orange;"
+                       (click)="opanModalDetailemployee(data.id)"></i>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <i nz-icon
+                       nzType="delete"
+                       nzTheme="outline"
+                       style="color: red;"></i>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</ng-container>

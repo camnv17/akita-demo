@@ -1,0 +1,24 @@
+<form nz-form
+      [formGroup]="formEmployee"
+      (ngSubmit)="onSubmit()">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6"
+                       nzFor="email">Name</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <input nz-input
+                   formControlName="name">
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6"
+                       nzFor="email">E-Mail</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <input nz-input
+                   type="email"
+                   formControlName="email">
+        </nz-form-control>
+    </nz-form-item>
+    <button nz-button
+            nzType="primary"
+            [nzLoading]="(loading$ | async)">Save</button>
+</form>
