@@ -1,3 +1,6 @@
+<button nz-button
+        nzType="primary"
+        (click)="openModalAddEmployee()">Create</button>
 <ng-container *ngIf="(entities$ | async) as entities">
     <nz-table #basicTable
               [nzData]="entities.employees"
@@ -20,7 +23,7 @@
                        nzType="edit"
                        nzTheme="outline"
                        style="color: orange;"
-                       (click)="opanModalDetailemployee(data.id)"></i>
+                       (click)="openModalDetailEmployee(data.id)"></i>
                     <nz-divider nzType="vertical"></nz-divider>
                     <i nz-icon
                        nzType="delete"

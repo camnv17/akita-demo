@@ -13,7 +13,7 @@ import { EmployeeDetailComponent } from '../employee-detail/employee-detail.comp
 })
 export class EmployeeListComponent implements OnInit {
 
-  entities$ = this.employeeQuery.entities$
+  entities$ = this.employeeQuery.entities$;
 
   constructor(
     private employeeService: EmployeeService,
@@ -36,7 +36,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.deleteEmployee(id).subscribe();
   }
 
-  public opanModalDetailemployee(id: ID) {
+  public openModalDetailEmployee(id: ID) {
     const modal = this.modalService.create({
       nzTitle: 'Employee Detail',
       nzContent: EmployeeDetailComponent,
@@ -44,6 +44,18 @@ export class EmployeeListComponent implements OnInit {
       nzFooter: null,
       nzComponentParams: {
         employeeId: id
+      }
+    });
+  }
+
+  public openModalAddEmployee() {
+    const modal = this.modalService.create({
+      nzTitle: 'Employee Create',
+      nzContent: EmployeeDetailComponent,
+      nzViewContainerRef: this.viewContainerRef,
+      nzFooter: null,
+      nzComponentParams: {
+        employeeId: ''
       }
     });
   }

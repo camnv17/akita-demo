@@ -20,7 +20,7 @@ export class EmployeeService {
   public getEmployees() {
     return this.http.get<ModelEmployee[]>(this.url)
       .pipe(
-        tap(employees => { this.employeeStore.set(employees as ModelEmployee[]) })
+        tap(employees => { this.employeeStore.set(employees) })
       );
   }
 
@@ -28,8 +28,18 @@ export class EmployeeService {
     return this.http.get<ModelEmployee>(`${this.url}/${id}`)
       .pipe(
         tap(employee => {
-          this.employeeStore.add(employee as ModelEmployee);
+          this.employeeStore.add(employee);
           this.employeeStore.update({ employeeId: employee.id });
+        })
+      );
+  }
+
+  public postEmployee(model: ModelEmployee) {
+    return this.http.post<ModelEmployee>(this.url, model)
+      .pipe(
+        tap(response => {
+          this.employeeStore.add(response);
+          this.employeeStore.setLoading(false);
         })
       );
   }

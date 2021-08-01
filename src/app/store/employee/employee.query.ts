@@ -15,7 +15,7 @@ export class EmployeeQuery extends QueryEntity<EmployeeState, ModelEmployee>{
     }
 
     entities$ = combineLatest([
-        this.selectAll(),
+        this.selectAll({ sortBy: 'name' }),
         this.selectLoading()
     ]).pipe(map(loadEntities));
 }

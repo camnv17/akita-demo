@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ID } from '@datorama/akita';
-import { Observable } from 'rxjs';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { take } from 'rxjs/operators';
-import { ModelEmployee } from 'src/app/models/model.employee';
 import { EmployeeService } from 'src/app/services/service.employee.service';
 import { EmployeeQuery } from 'src/app/store/employee/employee.query';
 import { EmployeeStore } from 'src/app/store/employee/employee.store';
@@ -25,6 +24,7 @@ export class EmployeeDetailComponent implements OnInit {
     private employeeService: EmployeeService,
     private employeeQuery: EmployeeQuery,
     private emloyeeStore: EmployeeStore,
+    private modelRef: NzModalRef,
     private fb: FormBuilder
   ) {
   }
@@ -65,6 +65,7 @@ export class EmployeeDetailComponent implements OnInit {
   public onSubmit() {
     const model = this.formEmployee.getRawValue();
     this.emloyeeStore.setLoading(true);
-    this.employeeService.putEmployee(model).subscribe();
+    if (this.employeeId) this.employeeService.putEmployee(model).subscribe(_ => this.modelRef.destroy());
+    else this.employeeService.postEmployee(model).subscribe(_ => this.modelRef.destroy());
   }
 }
